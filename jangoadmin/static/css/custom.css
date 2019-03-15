@@ -1,0 +1,16 @@
+.rb-box{
+	border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.rb-box .box-body{
+	padding: 10px;
+	border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.rb-box .box-head{
+	padding: 10px;
+	border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
