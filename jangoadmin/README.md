@@ -30,3 +30,10 @@
 - GOOGLE_API_KEY=your-google-key<br>
 - APIURL=http://192.168.0.124:8000/api/<br>
 - WEBURL=http://192.168.0.124:8000/<br>
+
+
+Additional modifications done in 2020:
+1. Fixtures can be used instead of seeders.
+2. Angular JS integrated instead of bootstrap in templates
+3. Decorators has been added for login required or superadmin required.
+4. Serializers has been added.

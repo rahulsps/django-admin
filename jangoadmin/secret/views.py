@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import auth
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 # Create your views here.
 @login_required
@@ -81,3 +82,5 @@ def NotFound(request):
 def Logout(request):
     auth.logout(request)
     return redirect('/secret/login/')
+
+

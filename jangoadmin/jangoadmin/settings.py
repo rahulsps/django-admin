@@ -25,7 +25,6 @@ SECRET_KEY = '89=l6z6=s2h81@dy@=%y@!nd94a07+)@h0%oj$6(r7gf67#fp8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -59,6 +58,10 @@ ROOT_URLCONF = 'jangoadmin.urls'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+# FIXTURE_DIRS = [
+#     os.path.join(BASE_DIR, "secret/fixtures")
+# ]
 
 TEMPLATES = [
     {
