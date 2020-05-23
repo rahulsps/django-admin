@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "42595283-1563-4858-8f5f-615513902de2",
+		"_postman_id": "420265f9-5d1a-4989-8109-c9b8c74c3621",
 		"name": "jangoadmin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,18 +22,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"username\":\"rahulsps\",\"secret\":\"rahul\",\"google\":0}"
+							"raw": "{\"username\":\"rahulsps\",\"secret\":\"rahul123\",\"google\":0}"
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/login/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/login/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"login",
@@ -42,6 +37,75 @@
 						}
 					},
 					"response": [
+						{
+							"name": "login pass google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\",\"google\":1}"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/login/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 07:30:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "256"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"6e7b7fca9af6a2df20c134fecbecd1c763e0659b\",\n        \"id\": 17,\n        \"username\": \"rahul.bhola.softprodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true\n    }\n}"
+						},
 						{
 							"name": "login pass email",
 							"originalRequest": {
@@ -179,75 +243,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Failed\"\n    }\n}"
-						},
-						{
-							"name": "login pass google",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\",\"google\":1}"
-								},
-								"url": {
-									"raw": "http://192.168.0.103:8000/api/login/",
-									"protocol": "http",
-									"host": [
-										"192",
-										"168",
-										"0",
-										"103"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"login",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Tue, 01 Jan 2019 07:30:29 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.6.7"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Allow",
-									"value": "POST, OPTIONS"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Content-Length",
-									"value": "256"
-								},
-								{
-									"key": "Vary",
-									"value": "Cookie"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"6e7b7fca9af6a2df20c134fecbecd1c763e0659b\",\n        \"id\": 17,\n        \"username\": \"rahul.bhola.softprodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true\n    }\n}"
 						}
 					]
 				},
@@ -258,7 +253,7 @@
 						"header": [
 							{
 								"key": "Token",
-								"value": "0a2a41311c5e5e6b96ca72a19b1a42cf0bc228c6",
+								"value": "09d342e55c2cfd7cd09accb65b92870ed38bf7a4",
 								"type": "text"
 							}
 						],
@@ -267,15 +262,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/logout/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/logout/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"logout",
@@ -439,15 +429,10 @@
 							"raw": "{\n\t\"username\":\"rahulsps\",\n    \"email\":\"rahulbhola.softprodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\"\n}"
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/register/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/register/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"register",
@@ -457,7 +442,7 @@
 					},
 					"response": [
 						{
-							"name": "register pass google",
+							"name": "register fail dup username",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -470,7 +455,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"first_name\":\"Rahul\",\n\t\"last_name\":\"Bhola\",\n    \"email\":\"rahul.bhola.soft.prodigy@gmail.com\",\n    \"password\":\"\",\n    \"confirm-password\":\"\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":1,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"sometoken\"\n}"
+									"raw": "{\n\t\"username\":\"rahulsps1\",\n    \"email\":\"rahulbhola.soft.p.rodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\"\n}"
 								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/register/",
@@ -495,80 +480,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 09 Jan 2019 07:17:01 GMT"
+									"value": "Wed, 09 Jan 2019 07:53:26 GMT"
 								},
 								{
 									"key": "Server",
 									"value": "WSGIServer/0.2 CPython/3.6.8"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Allow",
-									"value": "OPTIONS, POST"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Content-Length",
-									"value": "286"
-								},
-								{
-									"key": "Vary",
-									"value": "Cookie"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"812823ddb8dae1ba1177ae5aa186f3c1de1d9b9f\",\n        \"id\": 10,\n        \"username\": \"rahul.bhola.soft.prodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.soft.prodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"timezone\": \"Asia/Kolkata\"\n    }\n}"
-						},
-						{
-							"name": "register fail ",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"username\":\"rahulsps\",\n    \"email\":\"rahulbhola.softprodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123456\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0\n}"
-								},
-								"url": {
-									"raw": "http://192.168.0.103:8000/api/register/",
-									"protocol": "http",
-									"host": [
-										"192",
-										"168",
-										"0",
-										"103"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"register",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Tue, 01 Jan 2019 09:59:25 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.6.7"
 								},
 								{
 									"key": "Content-Type",
@@ -592,7 +508,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Passwords did not match!\"\n    }\n}"
+							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Username already exists!\"\n    }\n}"
 						},
 						{
 							"name": "register fail dup google",
@@ -664,7 +580,7 @@
 							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Account already exists!\"\n    }\n}"
 						},
 						{
-							"name": "register fail dup username",
+							"name": "register fail ",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -677,16 +593,16 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"username\":\"rahulsps1\",\n    \"email\":\"rahulbhola.soft.p.rodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\"\n}"
+									"raw": "{\n\t\"username\":\"rahulsps\",\n    \"email\":\"rahulbhola.softprodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123456\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0\n}"
 								},
 								"url": {
-									"raw": "http://192.168.0.124:8000/api/register/",
+									"raw": "http://192.168.0.103:8000/api/register/",
 									"protocol": "http",
 									"host": [
 										"192",
 										"168",
 										"0",
-										"124"
+										"103"
 									],
 									"port": "8000",
 									"path": [
@@ -702,11 +618,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 09 Jan 2019 07:53:26 GMT"
+									"value": "Tue, 01 Jan 2019 09:59:25 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.6.8"
+									"value": "WSGIServer/0.2 CPython/3.6.7"
 								},
 								{
 									"key": "Content-Type",
@@ -730,7 +646,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Username already exists!\"\n    }\n}"
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Passwords did not match!\"\n    }\n}"
 						},
 						{
 							"name": "register pass email",
@@ -800,6 +716,75 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"66bee4cb1f520f916a77d8f626fecb3de626870b\",\n        \"id\": 7,\n        \"username\": \"rahulsps\",\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"email\": \"rahulbhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"timezone\": \"Asia/Kolkata\"\n    }\n}"
+						},
+						{
+							"name": "register pass google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"first_name\":\"Rahul\",\n\t\"last_name\":\"Bhola\",\n    \"email\":\"rahul.bhola.soft.prodigy@gmail.com\",\n    \"password\":\"\",\n    \"confirm-password\":\"\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":1,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"sometoken\"\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jan 2019 07:17:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"812823ddb8dae1ba1177ae5aa186f3c1de1d9b9f\",\n        \"id\": 10,\n        \"username\": \"rahul.bhola.soft.prodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.soft.prodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"timezone\": \"Asia/Kolkata\"\n    }\n}"
 						}
 					]
 				},
@@ -813,7 +798,7 @@
 						"header": [
 							{
 								"key": "Token",
-								"value": "0a2a41311c5e5e6b96ca72a19b1a42cf0bc228c6",
+								"value": "8d42cbcee716d2c34a35a895da94e12f7ce66b66",
 								"type": "text"
 							}
 						],
@@ -822,15 +807,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/profile/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/profile/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"profile",
@@ -839,74 +819,6 @@
 						}
 					},
 					"response": [
-						{
-							"name": "get profile fail",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Token",
-										"value": "93fd3aa21abef2a6a712e2a8487603efd67188d6",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://192.168.0.103:8000/api/profile/",
-									"protocol": "http",
-									"host": [
-										"192",
-										"168",
-										"0",
-										"103"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"profile",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Tue, 01 Jan 2019 10:13:06 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.6.7"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Allow",
-									"value": "OPTIONS, PUT, GET"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Content-Length",
-									"value": "54"
-								},
-								{
-									"key": "Vary",
-									"value": "Cookie"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 403,\n    \"data\": {\n        \"message\": \"Not Logged In!\"\n    }\n}"
-						},
 						{
 							"name": "get profile pass",
 							"originalRequest": {
@@ -918,10 +830,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://192.168.0.103:8000/api/profile/",
 									"protocol": "http",
@@ -974,6 +882,70 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"avatar\": null,\n        \"first_name\": \"fname\",\n        \"last_name\": \"lname\",\n        \"email\": \"user1@gmail.com\",\n        \"username\": \"user1\"\n    }\n}"
+						},
+						{
+							"name": "get profile fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "93fd3aa21abef2a6a712e2a8487603efd67188d6",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/profile/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"profile",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:13:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, PUT, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 403,\n    \"data\": {\n        \"message\": \"Not Logged In!\"\n    }\n}"
 						}
 					]
 				},
@@ -990,24 +962,19 @@
 							},
 							{
 								"key": "Token",
-								"value": "0a2a41311c5e5e6b96ca72a19b1a42cf0bc228c6",
+								"value": "8d42cbcee716d2c34a35a895da94e12f7ce66b66",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul_bhola@softprodigy.com\",\n        \"username\": \"rahulsps\"\n    }"
+							"raw": "{\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahulbhola.softprodigy@gmail.com\",\n        \"username\": \"rahulsps\"\n    }"
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/profile/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/profile/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"profile",
@@ -1173,24 +1140,15 @@
 						"header": [
 							{
 								"key": "Token",
-								"value": "41c9c9552ecc047a85cd86fd799b0535ad6ff117",
+								"value": "09d342e55c2cfd7cd09accb65b92870ed38bf7a4",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/avatar/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/avatar/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"avatar",
@@ -1210,10 +1168,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/avatar/",
 									"protocol": "http",
@@ -1278,10 +1232,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/avatar/",
 									"protocol": "http",
@@ -1364,21 +1314,16 @@
 							"formdata": [
 								{
 									"key": "file",
-									"type": "file",
-									"src": ""
+									"value": "",
+									"type": "file"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8000/api/avatar/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/avatar/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"avatar",
@@ -1414,7 +1359,8 @@
 									"formdata": [
 										{
 											"key": "file",
-											"type": "file"
+											"type": "file",
+											"src": []
 										}
 									]
 								},
@@ -1498,7 +1444,8 @@
 									"formdata": [
 										{
 											"key": "file",
-											"type": "file"
+											"type": "file",
+											"src": []
 										}
 									]
 								},
@@ -1564,7 +1511,7 @@
 						"header": [
 							{
 								"key": "Token",
-								"value": "41c9c9552ecc047a85cd86fd799b0535ad6ff117",
+								"value": "09d342e55c2cfd7cd09accb65b92870ed38bf7a4",
 								"type": "text"
 							},
 							{
@@ -1579,15 +1526,10 @@
 							"raw": "{\"opwd\":\"rahul123\",\"npwd\":\"rahul\",\"cnpwd\":\"rahul\"}"
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/change-password/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/change-password/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"change-password",
@@ -1597,7 +1539,7 @@
 					},
 					"response": [
 						{
-							"name": "change-password pass",
+							"name": "change-password fail 2",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [
@@ -1615,7 +1557,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin\"}"
+									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin465\"}"
 								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/change-password/",
@@ -1640,7 +1582,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 11 Jan 2019 09:51:31 GMT"
+									"value": "Fri, 11 Jan 2019 09:51:15 GMT"
 								},
 								{
 									"key": "Server",
@@ -1660,7 +1602,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "57"
+									"value": "69"
 								},
 								{
 									"key": "Vary",
@@ -1668,7 +1610,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Password Updated!\"\n    }\n}"
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"New password(s) didn't match!\"\n    }\n}"
 						},
 						{
 							"name": "change-password fail 1",
@@ -1745,7 +1687,7 @@
 							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Incorrect Old Password!\"\n    }\n}"
 						},
 						{
-							"name": "change-password fail 2",
+							"name": "change-password pass",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [
@@ -1763,7 +1705,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin465\"}"
+									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin\"}"
 								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/change-password/",
@@ -1788,7 +1730,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 11 Jan 2019 09:51:15 GMT"
+									"value": "Fri, 11 Jan 2019 09:51:31 GMT"
 								},
 								{
 									"key": "Server",
@@ -1808,7 +1750,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "69"
+									"value": "57"
 								},
 								{
 									"key": "Vary",
@@ -1816,7 +1758,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"New password(s) didn't match!\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Password Updated!\"\n    }\n}"
 						}
 					]
 				},
@@ -1837,15 +1779,10 @@
 							"raw": "{\"email\":\"rahulbhola.softprodigy@gmail.com\"}"
 						},
 						"url": {
-							"raw": "http://192.168.0.124:8002/api/forgot-password/",
-							"protocol": "http",
+							"raw": "{{django-api-host}}/api/forgot-password/",
 							"host": [
-								"192",
-								"168",
-								"0",
-								"124"
+								"{{django-api-host}}"
 							],
-							"port": "8002",
 							"path": [
 								"api",
 								"forgot-password",
@@ -1855,7 +1792,7 @@
 					},
 					"response": [
 						{
-							"name": "forgot-password fail 1",
+							"name": "forgot-password fail 2",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -1868,7 +1805,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\"}"
+									"raw": "{\"email\":\"rahul.bhola.soft.prodigy@gmail.com\"}"
 								},
 								"url": {
 									"raw": "http://192.168.0.124:8000/api/forgot-password/",
@@ -1893,7 +1830,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 11 Jan 2019 09:52:04 GMT"
+									"value": "Fri, 11 Jan 2019 09:52:39 GMT"
 								},
 								{
 									"key": "Server",
@@ -1921,7 +1858,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Account not found!\"\n    }\n}"
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Login with Google!\"\n    }\n}"
 						},
 						{
 							"name": "forgot-password pass",
@@ -1993,6 +1930,75 @@
 							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Please check your email!\"\n    }\n}"
 						},
 						{
+							"name": "forgot-password fail 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/forgot-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:52:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Account not found!\"\n    }\n}"
+						},
+						{
 							"name": "forgot-password fail 3",
 							"originalRequest": {
 								"method": "POST",
@@ -2060,33 +2066,59 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Invalid request!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "forgot-password 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"npwd\":\"rahul\",\"cnpwd\":\"rahul\",\"token\":\"13fba58c346a256ef78bb3396509e8a2\"}"
 						},
+						"url": {
+							"raw": "{{django-api-host}}/api/forgot-password/",
+							"host": [
+								"{{django-api-host}}"
+							],
+							"path": [
+								"api",
+								"forgot-password",
+								""
+							]
+						}
+					},
+					"response": [
 						{
-							"name": "forgot-password fail 2",
+							"name": "forgot-password 2 pass",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
+										"type": "text",
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"email\":\"rahul.bhola.soft.prodigy@gmail.com\"}"
+									"raw": "{\"npwd\":\"rahul\",\"cnpwd\":\"rahul\",\"token\":\"13fba58c346a256ef78bb3396509e8a2\"}"
 								},
 								"url": {
-									"raw": "http://192.168.0.124:8000/api/forgot-password/",
-									"protocol": "http",
+									"raw": "{{django-api-host}}/api/forgot-password/",
 									"host": [
-										"192",
-										"168",
-										"0",
-										"124"
+										"{{django-api-host}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"forgot-password",
@@ -2100,11 +2132,11 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 11 Jan 2019 09:52:39 GMT"
+									"value": "Fri, 22 May 2020 12:52:21 GMT"
 								},
 								{
 									"key": "Server",
-									"value": "WSGIServer/0.2 CPython/3.6.8"
+									"value": "WSGIServer/0.2 CPython/3.6.10"
 								},
 								{
 									"key": "Content-Type",
@@ -2116,23 +2148,37 @@
 								},
 								{
 									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
+									"value": "DENY"
 								},
 								{
 									"key": "Content-Length",
-									"value": "58"
+									"value": "57"
 								},
 								{
 									"key": "Vary",
 									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Login with Google!\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Password Updated!\"\n    }\n}"
 						}
 					]
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
