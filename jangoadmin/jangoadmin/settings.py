@@ -55,9 +55,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'jangoadmin.urls'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static")
+# ]
 
 # FIXTURE_DIRS = [
 #     os.path.join(BASE_DIR, "secret/fixtures")
@@ -156,8 +156,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = config('STATIC_URL', default='http://localhost/jangoadmin/static/')

@@ -20,7 +20,7 @@ from django.views.generic.base import TemplateView
 from frontend.views import Home, ForgotPassword, ResetPassword
 
 urlpatterns = [
-    #~ path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('secret/', include('secret.urls')),
     path('api/', include('api.urls')),
     path('forgot-password/', ForgotPassword),
