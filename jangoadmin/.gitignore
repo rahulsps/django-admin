@@ -99,3 +99,4 @@ myenv
 .mypy_cache/
 
 ./static/*
+venv/*
