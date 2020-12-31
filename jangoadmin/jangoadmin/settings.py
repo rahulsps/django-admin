@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'secret.apps.SecretConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'storages'
+    'storages',
+    'kuldeep',
 ]
 
 MIDDLEWARE = [
