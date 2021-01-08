@@ -34,5 +34,6 @@ urlpatterns = [
     path('forgot-password/', ForgotPassword),
     path('reset-password/<str:token>/', ResetPassword),
     path('', Home),
+    path('users/', include('users.urls'))
     # path('kuldeep/', include('kuldeep.urls')),
 ]
