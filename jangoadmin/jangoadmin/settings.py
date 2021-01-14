@@ -119,8 +119,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DBNAME', default='jangoadmin'),
-        'USER': config('DBUSR', default='root'),
-        'PASSWORD': config('DBPWD', default='root'),
+        'USER': config('DBUSR', default='appventurez'),
+        'PASSWORD': config('DBPWD', default='9899150100@Km'),
         'HOST': config('DBHOST', default='localhost'),
         'PORT': 3306,
         'OPTIONS': {
