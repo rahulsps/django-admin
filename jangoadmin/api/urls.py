@@ -4,8 +4,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from api.views import Register, Login, Logout, Dashboard, MyProfile, Avatar, ChangePassword, ForgotPassword
 
 urlpatterns = [
-    path('register/', Register),
-    path('login/', Login),
+    path('register/', Register,name="register"),
+    path('login/', Login,name="login"),
     path('profile/', MyProfile),
     path('avatar/', Avatar),
     path('change-password/', ChangePassword),

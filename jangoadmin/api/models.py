@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from decouple import config
 
 class Timezones(models.Model):
-    class Meta:
-        db_table  = "hs_timezones"
-    
     id = models.AutoField(primary_key=True)
     county_code = models.CharField(blank=True, null=True, max_length=2, default=None)
     lat_long = models.CharField(blank=True, null=True, max_length=12, default=None)
@@ -17,7 +14,10 @@ class Timezones(models.Model):
     notes = models.TextField(blank=True, null=True, default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-
+    class Meta:
+        db_table  = "hs_timezones"
+    def __str__(self):
+        return self.county_code 
 class Profile(models.Model):
     class Meta:
         db_table  = "hs_user_profile"
