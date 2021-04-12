@@ -1,19 +1,17 @@
 name: Django Tests 
-
 on:
   push:
     branches:
-      -dheerajsps-patch-1 
+      -dheerajsps-patch-1,master 
   pull_request:
     branches:
-      -dheerajsps-patch-1  
+      -dheerajsps-patch-1,master   
 # on:
 #   schedule:
 #     - cron: '*/15 * * * *'
 jobs:
   build:
     runs-on:ubuntu-latest
-
     steps:
     -uses: actions/checkout@v2
     -name: Set up Python 3.6.9
@@ -24,7 +22,6 @@ jobs:
      run: |
         python -m pip install --upgrade pip 
         pip3 install -r requirements.txt
-
     -name: Lint with flake8
      run: |
       pip3 install flake8
@@ -34,9 +31,6 @@ jobs:
         pip3 install coverage 
         coverage run manage.py test 
         coverage report 
-
     -name: Django Testing 
      run : |
         python3 manage.py test 
-
-     
