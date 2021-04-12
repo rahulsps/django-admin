@@ -9,7 +9,8 @@ class TestSetUp(APITestCase):
             "email":"rahulbhola.softprodigy@gmail.com",
             "password":"rahul123",
         }
-        self.login_data={"email":"dheeraj@gmail.com","password":"rahul123"}
+        self.login_data={"email":"rahulbhola.softprodigy@gmail.com",
+        "password":"rahul123"}
         return super().setUp()
     def tearDown(self):
         return super().tearDown()

@@ -163,3 +163,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = config('STATIC_URL', default='http://localhost/jangoadmin/static/')
+# import sys 
+# if 'test' in sys.argv:
+#     DATABASES['default']['engine']='sqlite3'

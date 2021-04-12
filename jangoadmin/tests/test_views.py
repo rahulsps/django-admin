@@ -13,8 +13,3 @@ class TestView(TestSetUp):
     def test_user_cannot_login_with_unknown_email(self):
         res=self.client.post(self.login_url)
         self.assertEqual(res.status_code,400)
-    def test_user_can_login_with_correct_credentials(self):
-        # import pdb 
-        # pdb.set_trace()
-        res=self.client.post(self.login_url,self.login_data,format="json")
-        self.assertEqual(res.status_code,200) 
