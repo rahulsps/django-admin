@@ -328,6 +328,7 @@ logger=logging.getLogger(__name__)
 class UserSignUp(APIView):
     def post(self,request): 
         try:
+            print("==== called =======")
             params=request.data 
             try:
                 password=params.pop("password") 
