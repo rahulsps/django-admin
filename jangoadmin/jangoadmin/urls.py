@@ -20,7 +20,7 @@ from django.views.generic.base import TemplateView
 
 #from frontend.views import Home, ForgotPassword, ResetPassword
 
-from kuldeep.views import *
+#from kuldeep.views import *
 
 #router = routers.DefaultRouter()
 
@@ -28,7 +28,7 @@ from kuldeep.views import *
 #router.register(r'bread', BreadViewSet),
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     #path('', include(router.urls)),
     #path('secret/', include('secret.urls')),
     path('api/', include('api.urls')),

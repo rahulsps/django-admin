@@ -383,6 +383,6 @@ class LoginView(APIView):
             else:
                 return Response({"status":False,"message":"OOPS,It seems credentials are invalid"},status=status.HTTP_400_BAD_REQUEST)  
         except Exception:
-            logger.exception(traceback.format_exc())
-            logger.exception("Something went wrong in " + "Post" + "login")
+            # logger.exception(traceback.format_exc())
+            # logger.exception("Something went wrong in " + "Post" + "login")
             return Response({"status":True,"message":"Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
