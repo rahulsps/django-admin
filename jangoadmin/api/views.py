@@ -331,6 +331,7 @@ class UserSignUp(APIView):
             print("==== called =======")
             params=request.data 
             try:
+                print("=== params ")
                 password=params.pop("password") 
             except Exception:
                 password=None 
