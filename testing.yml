@@ -1,7 +1,9 @@
 name: Python package
 
-on: [push]
-
+on: 
+    push:
+      branches:
+        -dheerajsps-patch-1
 jobs:
   build:
 
