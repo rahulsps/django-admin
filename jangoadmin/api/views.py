@@ -326,12 +326,15 @@ from django.contrib.auth import authenticate,login
 from rest_framework.authtoken.models import Token 
 logger=logging.getLogger(__name__)
 class UserSignUp(APIView):
+    '''
+    API FOR SIGNUP 
+    DEVELOPER: Dheeraj_Rajput (dheeraj_rajput@softprodigy.com)
+    Remarks: Don't Change anything without disucssion with developing team 
+    '''
     def post(self,request): 
         try:
-            print("==== called =======")
             params=request.data 
             try:
-                print("=== params ")
                 password=params.pop("password") 
             except Exception:
                 password=None 
@@ -349,9 +352,12 @@ class UserSignUp(APIView):
                 return Response({"status":"False","message":"Something went wrong","errors":serializer.errors},status=status.HTTP_400_BAD_REQUEST) 
         except Exception:
             logger.exception(traceback.format_exc())
-            logger.exception("Something went wrong while Sigup")
+            logger.exception("Something went wrong while Signup")
             return Response({"status":False,"message":"OOPS,Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-class LoginView(APIView):   
+class LoginView(APIView): 
+    '''
+    API FOR SIGIN 
+    '''  
     def post(self,request):
         try:
             params=request.data 
@@ -384,6 +390,6 @@ class LoginView(APIView):
             else:
                 return Response({"status":False,"message":"OOPS,It seems credentials are invalid"},status=status.HTTP_400_BAD_REQUEST)  
         except Exception:
-            # logger.exception(traceback.format_exc())
-            # logger.exception("Something went wrong in " + "Post" + "login")
+            logger.exception(traceback.format_exc())
+            logger.exception("Something went wrong in " + "Post" + "login")
             return Response({"status":True,"message":"Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)

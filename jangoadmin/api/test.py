@@ -7,7 +7,6 @@ from rest_framework.test import APITestCase
 from api.serializers import UserSerializer
 class RegistrationTestCase(APITestCase):
     def test_registration(self):
-        print("=hello")
         data="{'username' :'dhee1903','email':'dheeraj_4@gmail.com','password':'test@123'}"
         my_dict=ast.literal_eval(data)
         response=self.client.post(reverse('register'),data=my_dict,format="json")
