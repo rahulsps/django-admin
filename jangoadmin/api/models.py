@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager 
 class UserManager(BaseUserManager):
     def create_superuser(self,email,username,password):
+        '''
+        '''
         user=self.model(email=email)
         user.username=username 
         user.set_password(password)
@@ -12,6 +14,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user 
 class User(AbstractBaseUser,PermissionsMixin):
+    '''
+    models for the user 
+    '''
     latitude=models.CharField("Latitude",blank=True,null=True,max_length=100,default=None)
     longitude=models.CharField("Latitude",blank=True,null=True,max_length=100,default=None)
     my_description=models.CharField("Latitude",blank=True,null=True,max_length=1024,default=None)
