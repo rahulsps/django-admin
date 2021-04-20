@@ -406,6 +406,7 @@ class ChangePassWord(APIView):
     def post(self,request):
         try:
             params=request.data 
+            print('======= params is: ',params)
             try:
                 current_password=params.pop("new_password") 
             except Exception:
