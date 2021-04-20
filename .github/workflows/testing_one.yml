@@ -20,3 +20,6 @@ jobs:
     -name: Run Tests
      run: |
         python3 manage.py test
+    - name: Run tests
+      run: |
+        python3 manage.py test 
