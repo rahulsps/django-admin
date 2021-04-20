@@ -31,4 +31,4 @@ class User(AbstractBaseUser,PermissionsMixin):
     def save(self,*args,**kwargs):
         self.email=self.email.lower()
         self.username=self.username.lower()
-        super(User,self).save(*args,**kwargs)
+        super(User,self).save(*args,**kwargs)   
