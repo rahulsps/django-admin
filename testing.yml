@@ -37,8 +37,13 @@ jobs:
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
+<<<<<<< HEAD
         python3 -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+=======
+         python3 -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
+>>>>>>> 06fd95bf6779dc8b07c6fbff98de5d9301e3422d
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
