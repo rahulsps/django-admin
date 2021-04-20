@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 name: Django Tests 
 on:
   push:
