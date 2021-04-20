@@ -21,3 +21,8 @@ class RegistrationTestCase(APITestCase):
         my_dict=ast.literal_eval(self.data)
         response=self.client.post(reverse("login"),data=my_dict,format="json")
         self.assertEqual(response.status_code,status.HTTP_400_BAD_REQUEST)
+    def test_change_password_with_data(self):
+        self.data='{"new_password":"rahul123","confirm_password":"rahul123","old_password":"test@123"}'
+        my_dict=ast.literal_eval(self.data)
+        response=self.client.post(reverse("ChangePassWord"),data=my_dict,format="json")
+        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
