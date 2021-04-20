@@ -17,6 +17,3 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip3 install pylint
-    - name: Analysing the code with pylint
-      run: |
-        pylint `ls -R|grep .py$|xargs`
