@@ -24,7 +24,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-<<<<<<< HEAD
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9,3.6]
@@ -39,19 +38,6 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install flake8 pytest
-=======
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-         python3 -m pip install flake8 pytest
->>>>>>> b7ac8697586f6ff2ab6e18c6aca56eb0b43ffb3f
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
