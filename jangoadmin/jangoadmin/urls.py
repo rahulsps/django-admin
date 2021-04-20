@@ -18,22 +18,22 @@ from django.urls import path, include
 from rest_framework import routers
 from django.views.generic.base import TemplateView
 
-from frontend.views import Home, ForgotPassword, ResetPassword
+#from frontend.views import Home, ForgotPassword, ResetPassword
 
-from kuldeep.views import *
+#from kuldeep.views import *
 
-router = routers.DefaultRouter()
+#router = routers.DefaultRouter()
 
-router.register(r'harvest', HarvestViewSet),
-router.register(r'bread', BreadViewSet),
+#router.register(r'harvest', HarvestViewSet),
+#router.register(r'bread', BreadViewSet),
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('secret/', include('secret.urls')),
+    #path('admin/', admin.site.urls),
+    #path('', include(router.urls)),
+    #path('secret/', include('secret.urls')),
     path('api/', include('api.urls')),
-    path('forgot-password/', ForgotPassword),
-    path('reset-password/<str:token>/', ResetPassword),
-    path('', Home),
-    path('users/', include('users.urls'))
+    #path('forgot-password/', ForgotPassword),
+    #path('reset-password/<str:token>/', ResetPassword),
+    #path('', Home),
+    #path('users/', include('users.urls'))
 ]

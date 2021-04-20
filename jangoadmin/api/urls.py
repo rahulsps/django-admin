@@ -1,16 +1,16 @@
 from django.conf.urls import url
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from api.views import Register, Login, Logout, Dashboard, MyProfile, Avatar, ChangePassword, ForgotPassword
+from api.views import UserSignUp,LoginView
 
 urlpatterns = [
-    path('register/', Register),
-    path('login/', Login),
-    path('profile/', MyProfile),
-    path('avatar/', Avatar),
-    path('change-password/', ChangePassword),
-    path('forgot-password/', ForgotPassword),
-    path('logout/', Logout),
-    path('home/', Dashboard),
+    path('register/', UserSignUp.as_view(),name="register"),
+    path('login/', LoginView.as_view(),name="login"),
+    # path('profile/', MyProfile),
+    # path('avatar/', Avatar),
+    # path('change-password/', ChangePassword),
+    # path('forgot-password/', ForgotPassword),
+    # path('logout/', Logout),
+    # path('home/', Dashboard),
 ]
-urlpatterns = format_suffix_patterns(urlpatterns)
+# urlpatterns = format_suffix_patterns(urlpatterns)
