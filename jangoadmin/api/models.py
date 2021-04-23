@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager 
+from .enums import TokenType 
 class UserManager(BaseUserManager):
     def create_superuser(self,email,username,password):
         '''
@@ -29,6 +30,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     created_on=models.DateTimeField("Created On",auto_now_add=True)
     updated_on=models.DateTimeField("Updated On",auto_now_add=True)
     email=models.EmailField("Email",null=False,blank=False,unique=True,error_messages={"unique":"OOPS,An account with this email is already regisgtered"})
+    avatar=models.FileField("Avatar",null=True,blank=True,upload_to="avatars",default=None) 
     username=models.CharField("UserName",null=False,blank=False,max_length=100,unique=True,error_messages={"unique":"An UserName with this username is already regisgtered"})
     objects=UserManager()
     REQUIRED_FIELDS=['username']
@@ -37,3 +39,11 @@ class User(AbstractBaseUser,PermissionsMixin):
         self.email=self.email.lower()
         self.username=self.username.lower()
         super(User,self).save(*args,**kwargs)   
+class Token(models.Model):
+    token_type=models.CharField("Token Type",max_length=100,choices=((type,type.value) for type in TokenType))
+    token=models.CharField("Token",max_length=100,null=True,blank=True,default=None)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    created_at=models.DateTimeField("Created At",null=True,blank=True,default=None)
+    expiry_minutes=models.IntegerField("Expiry Minutes",default=30)
+    def __str__(self):
+        return str(self.token) + "_" + str(self.token)

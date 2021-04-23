@@ -316,7 +316,8 @@
 #     data = {"status":200,"data":{"message":1}}
 #     return JsonResponse(data)
 
-import logging,traceback 
+import json,logging,traceback 
+from decouple import config
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from rest_framework import status 
@@ -327,6 +328,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication 
 logger=logging.getLogger(__name__)
+def checkAuth(request):
+    if Token.objects.filter(key=request.META.get('HTTP_TOKEN')):
+        return Token.objects.filter(key=request.META.get('HTTP_TOKEN'))[0]
+    else:
+        return 0 
 class UserSignUp(APIView):
     '''
     API FOR SIGNUP 
@@ -439,4 +445,22 @@ class ChangePassWord(APIView):
             logger.exception(traceback.format_exc())
             logger.exception("Something went wrong in " + "POST" + "changepassword")
             return Response({"status":False,"message":"OOPS,Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+class AvatarView(APIView):
+    def get(self,request):
+        try:
+            token=checkAuth(request)
+            if token== 0:
+                data={"status":403,"data":{"message":"Not logged in"}}
+                return Response(data)
+            AWS_STORAGE_URL=config("AWS_STORAGE_URL",default="")
+            user=token.user 
+            if str(token.user.avatar)!="":
+                data={"status":200,"data":{"url":AWS_STORAGE_URL+str(token.user.profile.avatar)}} 
+            else:
+                data={"status":404,"data":{"message":"avatar missing"}}
+            return Response(data)
+        except Exception:
+            logger.exception(traceback.format_exc())
+            logger.exception("Something went wrong in" + "GET" + "AvatarView")
+            return Response({"status":False,"message":"Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
