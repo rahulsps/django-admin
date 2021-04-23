@@ -316,8 +316,10 @@
 #     data = {"status":200,"data":{"message":1}}
 #     return JsonResponse(data)
 
-import json,logging,traceback 
+import json,logging,traceback,os,boto3  
 from decouple import config
+from boto3.s3.transfer import S3Transfer
+from django.core.files.storage import FileSystemStorage
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from rest_framework import status 
@@ -412,7 +414,7 @@ class ChangePassWord(APIView):
     def post(self,request):
         try:
             params=request.data 
-            print('======= params is: ',params)
+
             try:
                 current_password=params.pop("new_password") 
             except Exception:
@@ -463,4 +465,26 @@ class AvatarView(APIView):
             logger.exception(traceback.format_exc())
             logger.exception("Something went wrong in" + "GET" + "AvatarView")
             return Response({"status":False,"message":"Something went wrong"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+    def post(self,request):
+        try:
+            avatar = request.FILES['file']
+            AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
+            AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
+            AWS_STORAGE_BUCKET_RGN = config('AWS_STORAGE_BUCKET_RGN', default='us-east-1')
+            AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='test')
+            fs          = FileSystemStorage(os.getcwd()+'/static/img/avatars')
+            fname       = avatar.name
+            filename    = fs.save(fname,avatar)
+            s3_path     = 'avatars/'+fname
+            local_path  = os.getcwd()+'/static/img/avatars/'+fname
+            transfer    = S3Transfer(boto3.client('s3', AWS_STORAGE_BUCKET_RGN,  aws_access_key_id = AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY,use_ssl=False))
+            client      = boto3.client('s3')
+            transfer.upload_file(local_path, AWS_STORAGE_BUCKET_NAME, s3_path,extra_args={'ACL': 'public-read'})
+            User.objects.filter(user=token.user.id).update(avatar=s3_path)
+            os.remove(local_path)
+            token = checkAuth(request)
+            user  = token.user 
+        except Exception as error:
+            logger.exception(traceback.format_exc())
+            logger.exception("Something went wrong " + 'GET' + 'AvatarView')
+            return Response({"status":False,"message":"Something went wrong","error":error},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
