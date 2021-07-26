@@ -8,7 +8,6 @@ djangorestframework==3.11.0
 docutils==0.15.2
 jmespath==0.10.0
 mysqlclient==1.4.6
-pkg-resources==0.0.0
 python-dateutil==2.8.1
 python-decouple==3.3
 pytz==2020.1
