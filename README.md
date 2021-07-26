@@ -1,6 +1,3 @@
-# opensource-codesamples
-- jangoadmin, reusable jango admin (bootstrap 4), landing page (simple) and api setup (using rest framework token mechanism)
-<br>
 # jangoadmin<br>
 - sudo apt-get install libmysqlclient-dev<br>
 - python3.6 -m pip install -r requirements.txt<br>
