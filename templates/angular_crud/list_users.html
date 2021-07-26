@@ -1,0 +1,360 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+.swal2-cancel{
+  margin-right:10px;
+}
+  form.example input {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    border-radius: 0px;
+  }
+  form.example button {
+    float: left;
+    width: 15%;
+    height: 36px;
+    padding: 5px;
+    background: #3e7fc1;
+    color: white;
+    font-size: 17px;
+    border: 1px solid #3e7fc1;
+    border-left: #808080;
+    cursor: pointer;
+  }
+  form.example button:hover {
+    background: #3e7fc1;
+  }
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+</style>
+<div data-ng-app="user_app" data-ng-controller="user_ctrl">
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">Users</li>
+    </ol>
+    <div class="widget">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-md-4 col-lg-4" style="display:block">
+            <form class="mt-1 example">
+              <input class="form-control " type="text" name="search" placeholder="Search" ng-model="search">
+              <button style="height:38px;" type="submit" ng-click="search_user()"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <div class="col-sm-4" id="reset-col" style="line-height: 44px;text-align:left">
+            <form>
+              <a class="btn " style="background-color:#3e7fc1;color:white" href="/secret/list_users/">Reset</a>
+            </form>
+          </div>
+          <div class="col-sm-2" style="text-align:right">
+            <select class="form-control" ng-click="change_page(page_number)" ng-model="page_number"
+              ng-options="x  for x in total_pages ">
+            </select>
+          </div>
+          <div class="col-sm-2" style="text-align:right">
+            <button type="button" class="btn " style="background-color:#3e7fc1;color:white" data-toggle="modal"
+              data-target="#exampleModal"> Add User <i class="fas fa-user-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content">
+        <div class="table-responsive">
+          <table id="ctgry-table" class="table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+            <thead>
+              <tr style="background-color: #3e7fc1;color:white">
+                <!-- Table Header -->
+                <th ng-repeat="x in table_header" ng-bind="x"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- table content -->
+              <tr ng-repeat="x in table_data">
+                <td ng-bind="(page_number-1)*entries_per_page + $index + 1"></td>
+                <td> {& x.name &} </td>
+                <td> {& x.age &} </td>
+                <td> {& x.department &} </td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"
+                    data-name="{& x.name &}" data-age="{& x.age &}" data-department="{& x.department &}"
+                    data-user_id="{& x.id &}"> <i class="fas fa-user-edit fa-sm"></i></i></button>
+                  <button class="btn btn-outline-primary" ng-click="delete_user(x.id)"> <i
+                      class="far fa-trash-alt"></i></a></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div ng-show="isObjectEmpty(table_data)" class="alert alert-danger"  >No data Found </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form name="myForm">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <!-- hidden user id to be added to form -->
+              <input name="user_id" type="number" class="form-control" id="user_id" ng-model="user.id"
+                style="display:none">
+              <input name="name" type="text" class="form-control" ng-model="user.name" id="name" required>
+              <p class="error_front" style="color:red"  ng-show="myForm.name.$touched && myForm.name.$invalid">This Field is required.</p>
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Age:</label>
+              <input name="age" type="number" class="form-control" id="age" ng-model="user.age" required>
+              <p class="error_front" style="color:red"  ng-show="myForm.age.$touched && myForm.age.$invalid">Field is required.</p>
+              
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Department:</label>
+              <input name="department" type="text" class="form-control" id="department" ng-model="user.department" required>
+              <p class="error_front" style="color:red"  ng-show="myForm.department.$touched && myForm.department.$invalid">This Field is required.</p>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="edit_user()" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="col-sm-12">
+      <!-- <button class="btn" style="background-color:#3e7fc1;color:white">Previous</button>
+    <button class="btn" style="background-color:#3e7fc1;color:white">Next</button> -->
+      <pagination ng-model="currentPage" total-items="todos.length" max-size="maxSize" boundary-links="true">
+      </pagination>
+    </div>
+  </div>
+</div>
+<script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    console.log('sa')
+    $('p.error').remove();
+    $('p.error_front').remove();
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var name = button.data('name')
+    var age = button.data('age')
+    var department = button.data('department')
+    var user_id = button.data('user_id')
+    if(user_id===undefined){
+      $('#exampleModalLabel').text("Add User")
+    }
+    else{
+      $('#exampleModalLabel').text("Edit User")
+    }
+    var modal = $(this)
+    modal.find('.modal-body  #name').val(name)
+    modal.find('.modal-body  #age').val(age)
+    modal.find('.modal-body  #department').val(department)
+    modal.find('.modal-body  #user_id').val(user_id)
+  })
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  var app = angular.module('user_app', [])
+  app.config(function ($locationProvider, $interpolateProvider) {
+    $locationProvider.html5Mode({
+      enabled: true
+    });
+    $interpolateProvider.startSymbol('{&');
+    $interpolateProvider.endSymbol('&}');
+  });
+  app.controller('user_ctrl', function ($scope, $http) {
+    $scope.isObjectEmpty = function(card){
+        if( Object.keys(card).length === 0){
+          return true
+        }
+        else{
+          return false
+        }
+    }
+    $scope.table_header = ['S.no', 'Name', 'Age', 'Department', 'Actions']
+    $(document).ready(function () {
+      $scope.user = { 'id': 5 };
+      $http({
+        method: "GET",
+        url: "/secret/get_user_data"
+      })
+        .then(function mySuccess(response) {
+          $scope.table_data1 = response.data;
+          $scope.table_data = $scope.table_data1['friends']
+          $scope.total_pages = $scope.table_data1['total_pages']
+          $scope.entries_per_page = $scope.table_data1['entries_per_page']
+          console.log($scope.total_pages)
+          $scope.page_number = $scope.total_pages[0]
+        }, function myError(response) {
+          $scope.msg1 = response.statusText;
+          console.log('error')
+        });
+    });
+    // ------------------change page-----------------------------
+    $scope.change_page = function (page_number) {
+      $scope.search = $('[name="search"]').val()
+      params = 'search=' + $scope.search + '&page=' + page_number
+      $http({
+        method: "GET",
+        url: "/secret/get_user_data/?" + params,
+      }).then(function mySuccess(response) {
+        $scope.table_data1 = response.data;
+        $scope.table_data = $scope.table_data1['friends']
+        console.log('success')
+      },
+        function myError(response) {
+          $scope.msg1 = response.statusText;
+          console.log('error')
+        });
+    }
+    // ------------------search user-----------------------------
+    $scope.search_user = function (id) {
+      $scope.search = $('[name="search"]').val()
+      params = 'search=' + $scope.search
+      $http({
+        method: "GET",
+        url: "/secret/get_user_data/?" + params,
+      }).then(function mySuccess(response) {
+        $scope.table_data1 = response.data;
+        $scope.table_data = $scope.table_data1['friends']
+        $scope.total_pages = $scope.table_data1['total_pages']
+        $scope.page_number = $scope.total_pages[0]
+        $scope.entries_per_page = $scope.table_data1['entries_per_page']
+        console.log('success')
+      },
+        function myError(response) {
+          $scope.msg1 = response.statusText;
+          console.log('error')
+        });
+    }
+    // ------------------edit user-----------------------------
+    $scope.edit_user = function (id) {
+      $('p.error').remove();
+      $('p.error_front').remove();
+      
+      $scope.user.id = $('[name="user_id"]').val()
+      $scope.user.name = $('[name="name"]').val()
+      $scope.user.age = $('[name="age"]').val()
+      $scope.user.department = $('[name="department"]').val()
+      params = 'id=' + $scope.user.id + '&name=' + $scope.user.name + '&age=' + $scope.user.age + '&department=' + $scope.user.department + '&page=' + $scope.page_number
+      $http({
+        method: "GET",
+        url: "/secret/add_edit_user/?" + params,
+      }).then(function mySuccess(response) {
+        console.log(response.data['status'])
+        console.log("--------")
+        $scope.table_data1 = response.data;
+        $scope.table_data = $scope.table_data1['friends']
+        $scope.total_pages = $scope.table_data1['total_pages']
+        $scope.page_number = $scope.total_pages[0]
+        $scope.entries_per_page = $scope.table_data1['entries_per_page']
+        console.log('success')
+        if(response.data['status']==200){
+          $("#exampleModal").modal('hide')
+          Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Details has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        }
+        else{
+          console.log(response.data['error_msg'])
+          error_msg=response.data['error_msg']
+          $.each(error_msg, function (key, val) {
+              console.log(key)
+              $(`[name=${key}]`).after(`<p class="error" style="color:red;background-color:#fff"> ${val} </p>`)
+            });
+          Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Something went wrong',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        }
+      },
+        function myError(response) {
+          $scope.msg1 = response.statusText;
+          console.log('error')
+        });
+    }
+    // ------------------delete user-----------------------------
+    $scope.delete_user = function (id) {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          console.log(id)
+          params = "?id=" + id + '&page=' + $scope.page_number
+          $http({
+            method: "GET",
+            url: "/secret/delete_user/" + params,
+          })
+            .then(function mySuccess(response) {
+              console.log('success')
+              $scope.table_data1 = response.data;
+              $scope.table_data = $scope.table_data1['friends']
+              $scope.total_pages = $scope.table_data1['total_pages']
+              $scope.entries_per_page = $scope.table_data1['entries_per_page']
+              console.log($scope.total_pages)
+              $scope.page_number = $scope.total_pages[0]
+            },
+              function myError(response) {
+                $scope.msg1 = response.statusText;
+                console.log('error')
+              });
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'User has been deleted.',
+            'success'
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'User is safe  :)',
+            'error'
+          )
+        }
+      })
+    }
+  });
+</script>
+{% endblock %}
